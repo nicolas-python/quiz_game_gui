@@ -2,6 +2,7 @@
 
 import tkinter
 import sqlite3
+import tkinter.messagebox as mb
 
 class quiz_game:
     def __init__(self,root):
@@ -48,12 +49,39 @@ class quiz_game:
         self.button_exit = tkinter.Button(self.frame_buttons, text="Beenden", command=self.exit_game)
         self.button_exit.pack(pady=10)
 
-    def button_typ_click(self):
-        typ_wert = self.entry_typ.get()
-        print("Typ:", typ_wert)
-
     def create_player(self):
-        print("Spieler erstellen geklickt")
+
+        self.frame_buttons.pack_forget()
+        self.show_create_player_screen()
+
+    def show_create_player_screen(self):
+
+        self.frame_create_player = tkinter.Frame(self.root)
+        self.frame_create_player.pack()
+
+        label = tkinter.Label(self.frame_create_player, text="Spielername:")
+        label.pack(pady=10)
+
+        self.entry_name = tkinter.Entry(self.frame_create_player)
+        self.entry_name.pack(pady=10)
+
+        button_save = tkinter.Button(self.frame_create_player,text="Speichern",command=self.save_player)
+        button_save.pack(pady=10)
+
+    def save_player(self):
+        name = self.entry_name.get()
+
+        if name == "":
+            mb.showwarning("Fehler","Bitte Namen eingeben")
+            return
+
+        score = 0
+
+        self.c.execute("INSERT INTO quiz (player, score) VALUES (?, ?)", (name, score))
+        self.conn.commit()
+
+        self.frame_create_player.destroy()
+        self.frame_buttons.pack(expand=True)
 
     def select_player(self):
         print("Spieler wählen geklickt")
