@@ -105,6 +105,10 @@ class quiz_game:
 
         button_choose = tkinter.Button(self.frame_select_player, text="Spieler auswählen", command=self.set_player)
         button_choose.pack(pady=10)
+        button_delete = tkinter.Button(self.frame_select_player,text="Spieler löschen",command=self.delete_player)
+        button_delete.pack(pady=10)
+        button_back = tkinter.Button(self.frame_select_player, text="Zurück", command=self.set_player)
+        button_back.pack(pady=10)
 
     def set_player(self):
         selected = self.listbox.get(tkinter.ACTIVE)
@@ -145,6 +149,8 @@ class quiz_game:
 
         button_back = tkinter.Button(self.frame_score, text="Zurück", command=self.back_to_menu)
         button_back.pack(pady=10)
+        button_delete = tkinter.Button(self.frame_score,text="Score löschen",command=self.delete_score)
+        button_delete.pack(pady=10)
 
     def back_to_menu(self):
         self.frame_score.destroy()
@@ -153,6 +159,41 @@ class quiz_game:
     def exit_game(self):
         self.root.destroy()
 
+    #löschen funktion für spieler auswahl
+    def delete_player(self):
+        selected = self.listbox.get(tkinter.ACTIVE)
+
+        if not selected:
+            mb.showwarning("Fehler", "Bitte Spieler auswählen")
+            return
+
+        name = selected.split(",")[0]
+
+        self.c.execute("DELETE FROM quiz WHERE player = ?", (name,))
+        self.conn.commit()
+
+        mb.showinfo("OK", "Spieler gelöscht")
+
+        self.frame_select_player.destroy()
+        self.show_select_player_screen()
+
+    #löschfunktion für score
+    def delete_score(self):
+        selected = self.listbox.get(tkinter.ACTIVE)
+
+        if not selected:
+            mb.showwarning("Fehler", "Bitte Eintrag auswählen")
+            return
+
+        name = selected.split(",")[0]
+
+        self.c.execute("DELETE FROM quiz WHERE player = ?", (name,))
+        self.conn.commit()
+
+        mb.showinfo("OK", "Score gelöscht")
+
+        self.frame_score.destroy()
+        self.score()
 
 root=tkinter.Tk()
 game = quiz_game(root)
