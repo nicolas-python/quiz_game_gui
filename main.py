@@ -65,6 +65,8 @@ class quiz_game:
 
         button_save = tkinter.Button(self.frame_create_player,text="Speichern",command=self.save_player)
         button_save.pack(pady=10)
+        button_back = tkinter.Button(self.frame_create_player,text="Zurück",command=self.back_to_menu_0)
+        button_back.pack(pady=10)
 
     def save_player(self):
         name = self.entry_name.get()
@@ -78,6 +80,10 @@ class quiz_game:
         self.c.execute("INSERT INTO quiz (player, score) VALUES (?, ?)", (name, score))
         self.conn.commit()
 
+        self.frame_create_player.destroy()
+        self.frame_buttons.pack(expand=True)
+
+    def back_to_menu_0(self):
         self.frame_create_player.destroy()
         self.frame_buttons.pack(expand=True)
 
