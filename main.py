@@ -27,7 +27,7 @@ class quiz_game:
 
         #variablen listen zwischenspiechern
         self.selected_player = None
-        self.score= 0
+        self.score_v= 0                         #v=variable da score nicht 2x exestieren kan
 
         #frame container für knöpfe erstellen
         self.frame_buttons = tkinter.Frame(root)
@@ -82,7 +82,6 @@ class quiz_game:
         self.frame_buttons.pack(expand=True)
 
     def select_player(self):
-        print("BUTTON GEDRÜCKT")
         self.frame_buttons.pack_forget()
         self.show_select_player_screen()
 
@@ -123,7 +122,33 @@ class quiz_game:
         print("Spielen geklickt")
 
     def show_score(self):
-        print("Score anzeigen geklickt")
+        self.frame_buttons.pack_forget()
+        self.score()
+
+    def score(self):
+        self.frame_score = tkinter.Frame(self.root)
+        self.frame_score.pack()
+
+        label = tkinter.Label(self.frame_score, text="Score:")
+        label.pack(pady=10)
+
+        self.listbox = tkinter.Listbox(self.frame_score)
+        self.listbox.pack(pady=10)
+
+        # aus datenbank spieler holen
+        self.c.execute("SELECT player, score FROM quiz")
+        scores = self.c.fetchall()
+
+        # in liste eintragen
+        for s in scores:
+            self.listbox.insert(tkinter.END,f"{s[0]}, {s[1]} Punkte")
+
+        button_back = tkinter.Button(self.frame_score, text="Zurück", command=self.back_to_menu)
+        button_back.pack(pady=10)
+
+    def back_to_menu(self):
+        self.frame_score.destroy()
+        self.frame_buttons.pack(expand=True)
 
     def exit_game(self):
         self.root.destroy()
