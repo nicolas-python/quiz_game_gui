@@ -26,7 +26,7 @@ class quiz_game:
         self.root.geometry("600x550")
 
         #variablen listen zwischenspiechern
-        self.select_player=tkinter.StringVar()
+        self.selected_player = None
         self.score= 0
 
         #frame container für knöpfe erstellen
@@ -50,12 +50,10 @@ class quiz_game:
         self.button_exit.pack(pady=10)
 
     def create_player(self):
-
         self.frame_buttons.pack_forget()
         self.show_create_player_screen()
 
     def show_create_player_screen(self):
-
         self.frame_create_player = tkinter.Frame(self.root)
         self.frame_create_player.pack()
 
@@ -84,7 +82,42 @@ class quiz_game:
         self.frame_buttons.pack(expand=True)
 
     def select_player(self):
-        print("Spieler wählen geklickt")
+        print("BUTTON GEDRÜCKT")
+        self.frame_buttons.pack_forget()
+        self.show_select_player_screen()
+
+    def show_select_player_screen(self):
+        self.frame_select_player = tkinter.Frame(self.root)
+        self.frame_select_player.pack()
+
+        label = tkinter.Label(self.frame_select_player, text="Spielername auswählen:")
+        label.pack(pady=10)
+
+        self.listbox = tkinter.Listbox(self.frame_select_player)
+        self.listbox.pack(pady=10)
+
+        #aus datenbank spieler holen
+        self.c.execute("SELECT player FROM quiz")
+        players = self.c.fetchall()
+
+        #in liste eintragen
+        for p in players:
+            self.listbox.insert(tkinter.END, p[0])
+
+        button_choose = tkinter.Button(self.frame_select_player, text="Spieler auswählen", command=self.set_player)
+        button_choose.pack(pady=10)
+
+    def set_player(self):
+        selected = self.listbox.get(tkinter.ACTIVE)
+
+        if selected == "":
+            mb.showwarning("Fehler","Bitte Namen auswählen")
+            return
+
+        self.selected_player = selected
+
+        self.frame_select_player.destroy()
+        self.frame_buttons.pack(expand=True)
 
     def play(self):
         print("Spielen geklickt")
