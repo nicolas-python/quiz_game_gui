@@ -50,15 +50,16 @@ class quiz_game:
         self.button_exit.pack(pady=10)
 
         #fragen
-        self.question = [
+        self.current_question = 0
+        self.questions = [
             #Grundfunktionen
-            ("Was macht int()?", "Ganzzahl"),           #Wert wird in eine Ganzzahl umgewandelt
-            ("Was macht str()?", "Text"),               #Wandelt alles in text um 5 wird zu"5"
-            ("Was ist bool?", "True/False"),            #Datentyp für Wahr oder Falsch
-            ("Was macht float()?", "Kommazahl"),        #wandelt in Kommazahl um (5 zu 5.0)
-            ("Was macht import?", "lädt Modul"),             #lädt externe Module/Bibliotheken
-            ("Was ist print()?", "Ausgabe"),            #gibt Text aus
-            ("Was ist input()?", "Eingabe"),            #Benutzer schreibt etwas
+            ("Was macht int()?",["Ganzzahl","Text","Kommas","True/false"], "Ganzzahl"),           #Wert wird in eine Ganzzahl umgewandelt
+            ("Was macht str()?",["Zahl","Text","Komma","Liste"], "Text"),                         #Wandelt alles in text um 5 wird zu"5"
+            ("Was ist bool?",["Text","True/False","Zahl","Liste"], "True/False"),                 #Datentyp für Wahr oder Falsch
+            ("Was macht float()?",["Ganzzahl","Text","Kommazahl","Liste"], "Kommazahl"),          #wandelt in Kommazahl um (5 zu 5.0)
+            ("Was macht import?",["Funktion","lädt Modul","Variable","erstellt schleife"], "lädt Modul"), #lädt externe Module/Bibliotheken
+            ("Was ist print()?",["Ausgabe","Eingabe","Datai","Liste"], "Ausgabe"),                 #gibt Text aus
+            ("Was ist input()?",["Berechnung","Eingabe","Ausgabe","Datai"], "Eingabe"),            #Benutzer schreibt etwas
             #funktionen
             ("Was macht def?", "Funktion"),             #erstellt eine eigene Funktion
             ("Was macht return?", "Rückgabe"),          #gibt ein Ergebnis aus einer Funktion zurück
@@ -197,7 +198,56 @@ class quiz_game:
         self.frame_buttons.pack(expand=True)
 
     def play(self):
+        self.frame_buttons.pack_forget()
+        self.game()
 
+    def game(self):
+        self.current_question = 0
+        self.score_v = 0
+
+        self.frame_game = tkinter.Frame(self.root)
+        self.frame_game.pack()
+
+        self.question_label = tkinter.Label(self.frame_game, text="")
+        self.question_label.pack()
+        self.buttons = []
+
+        self.load_question()
+
+    def load_question(self):
+
+        if hasattr(self, "buttons"):        #prüfen ob schon Buttons existieren
+            # alle alten Buttons löschen
+            for button in self.buttons:
+                button.destroy()
+
+        question = self.questions[self.current_question]   #aktuelle Frage holen
+        self.question_label.config(text=question[0])        #frage im Label anzeigen
+
+        for answer in question[1]:            #alle Antwortmöglichkeiten durchgehen (Am Ende der Schleife ist antwort immer der letzte Wert)
+            # Button erstellen
+            button = tkinter.Button(self.frame_game, text=answer)
+            button.config(command=lambda a=answer, b=button: self.check_answer(a, b)) #a=platzhalter
+            button.pack(pady=5)                                                      #a=ist nur eine Kopie vom aktuellen Wert damit jeder Button seine eigene Antwort behält
+            self.buttons.append(button)
+
+            button.pack(pady=5)              #nutton im Fenster anzeigen
+
+            self.buttons.append(button)          #button speichern (damit wir ihn später ändern können)
+
+    def check_answer(self, selected_answer, button):
+
+        correct_answer = self.questions[self.current_question][2]
+
+        if selected_answer == correct_answer:
+            button.config(bg="green")
+            self.score_v += 1
+        else:
+            button.config(bg="red")
+
+        self.root.after(100)#,self.next_question)
+
+    #def next_question(self):
 
     def show_score(self):
         self.frame_buttons.pack_forget()
