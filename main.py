@@ -197,12 +197,7 @@ class quiz_game:
         self.frame_buttons.pack(expand=True)
 
     def play(self):
-        self.frame_buttons.pack_forget()
-        self.game()
 
-    def game(self):
-        self.frame_game = tkinter.Frame(self.root)
-        self.frame_game.pack()
 
     def show_score(self):
         self.frame_buttons.pack_forget()
