@@ -245,9 +245,15 @@ class quiz_game:
         else:
             button.config(bg="red")
 
-        self.root.after(100)#,self.next_question)
+        self.root.after(100,self.next_question)
 
-    #def next_question(self):
+    def next_question(self):
+        self.current_question += 1
+
+        if self.current_question < len(self.questions):                 #<len() = bin ich noch im Bereich
+            self.load_question()
+        else:
+            mb.showinfo("Fertig",f"Dein Score: {self.score_v}")
 
     def show_score(self):
         self.frame_buttons.pack_forget()
