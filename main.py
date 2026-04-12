@@ -216,9 +216,16 @@ class quiz_game:
         self.button_frame = tkinter.Frame(self.frame_game)     #Container für antwort buttons 2v2
         self.button_frame.pack()
 
+        self.exit_button = tkinter.Button(self.frame_game,text="Beenden",command=self.back_to_menu_2)
+        self.exit_button.pack(pady=10)
+
         self.buttons = []
 
         self.load_question()
+
+    def back_to_menu_2(self):
+        self.frame_game.destroy()
+        self.frame_buttons.pack(expand=True)
 
     def load_question(self):
         col = 0     #spalte
@@ -288,12 +295,12 @@ class quiz_game:
         for s in scores:
             self.listbox.insert(tkinter.END,f"{s[0]}, {s[1]} Punkte")
 
-        button_back = tkinter.Button(self.frame_score, text="Zurück", command=self.back_to_menu)
+        button_back = tkinter.Button(self.frame_score, text="Zurück", command=self.back_to_menu_1)
         button_back.pack(pady=10)
         button_delete = tkinter.Button(self.frame_score,text="Score löschen",command=self.delete_score)
         button_delete.pack(pady=10)
 
-    def back_to_menu(self):
+    def back_to_menu_1(self):
         self.frame_score.destroy()
         self.frame_buttons.pack(expand=True)
 
