@@ -263,6 +263,7 @@ class quiz_game:
         else:
             button.config(bg="red")
 
+        self.save_score()
         self.root.after(100,self.next_question)
 
     def next_question(self):
@@ -305,6 +306,7 @@ class quiz_game:
         self.frame_buttons.pack(expand=True)
 
     def exit_game(self):
+        self.save_score()
         self.root.destroy()
 
     #löschen funktion für spieler auswahl
@@ -342,6 +344,16 @@ class quiz_game:
 
         self.frame_score.destroy()
         self.score()
+
+    def save_score(self):
+        if not self.selected_player:
+            mb.showwarning("Fehler", "Kein Spieler gewählt,Speichern nicht möglich")
+            return
+
+        self.c.execute(
+            "UPDATE quiz SET score = ? WHERE player = ?",
+            (self.score_v, self.selected_player))
+        self.conn.commit()
 
 root=tkinter.Tk()
 game = quiz_game(root)
