@@ -3,6 +3,7 @@
 import tkinter
 import sqlite3
 import tkinter.messagebox as mb
+import random
 
 class quiz_game:
     def __init__(self,root):
@@ -203,6 +204,8 @@ class quiz_game:
     def game(self):
         self.current_question = 0
         self.score_v = 0
+
+        random.shuffle(self.questions)                          #mischt Reihenfolge zufällig (fragen Reihenfolge)
 
         self.frame_game = tkinter.Frame(self.root)
         self.frame_game.pack()
