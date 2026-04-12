@@ -24,7 +24,7 @@ class quiz_game:
         self.conn.commit()
         self.root = root
         self.root.title("Vokabel Quiz")
-        self.root.geometry("600x550")
+        self.root.geometry("400x350")
 
         #variablen listen zwischenspiechern
         self.selected_player = None
@@ -62,7 +62,7 @@ class quiz_game:
             ("Was ist print()?",["Ausgabe","Eingabe","Datei","Liste"],"Ausgabe"),                 #gibt Text aus
             ("Was ist input()?",["Berechnung","Eingabe","Ausgabe","Datai"],"Eingabe"),            #Benutzer schreibt etwas
             #funktionen
-            ("Was macht def?",["Funktion", "Variable", "Schleife", "Import"],"Funktion"),         #erstellt eine eigene Funktion
+            ("Was ist def?",["Funktion", "Variable", "Schleife", "Import"],"Funktion"),         #erstellt eine eigene Funktion
             ("Was macht return?",["Ausgabe", "Rückgabe", "Abbruch", "Vergleich"],"Rückgabe"),     #gibt ein Ergebnis aus einer Funktion zurück
             ("Was ist Parameter?",["Variable", "Liste", "Funktion", "Wert"],"Wert"),              #wert, der einer Funktion übergeben wird
             #Listen & Text
@@ -76,7 +76,7 @@ class quiz_game:
             ("Was macht remove()?",["Sortieren", "Hinzufügen", "Löschen", "Kopieren"],"Löschen"),    #entfernt ein bestimmtes Element
             ("Was macht pop()?",["Letztes", "Erstes", "Alles", "Sortieren"],"Letztes"),              #entfernt das !letzte! Element
             ("Was macht sort()?",["Mischen", "Sortieren", "Löschen", "Kopieren"],"Sortieren"),       #sortiert eine Liste
-            ("Was macht []?",["Liste", "Text", "Zahl", "Funktion"],"Liste"),                         #speichert mehrere Werte in einer Sammlung
+            ("Was ist []?",["Liste", "Text", "Zahl", "Funktion"],"Liste"),                         #speichert mehrere Werte in einer Sammlung
             ("Was macht index?",["Position", "Wert", "Sortieren", "Zählen"],"Position"),             #gibt die Position eines Elements in einer Liste zurück
             ("Was macht in?",["Addieren", "Vergleich", "Sortieren", "Enthalten"],"Enthalten"),       #prüft ob etwas in einer Liste ist
             #Schleifen / range
@@ -207,16 +207,23 @@ class quiz_game:
 
         random.shuffle(self.questions)                          #mischt Reihenfolge zufällig (fragen Reihenfolge)
 
-        self.frame_game = tkinter.Frame(self.root)
+        self.frame_game = tkinter.Frame(self.root)              #Container für spiel seite
         self.frame_game.pack()
 
         self.question_label = tkinter.Label(self.frame_game, text="")
         self.question_label.pack()
+
+        self.button_frame = tkinter.Frame(self.frame_game)     #Container für antwort buttons 2v2
+        self.button_frame.pack()
+
         self.buttons = []
 
         self.load_question()
 
     def load_question(self):
+        col = 0     #spalte
+        row = 0     #zeile
+
 
         if hasattr(self, "buttons"):        #prüfen ob schon Buttons existieren
             # alle alten Buttons löschen
@@ -228,14 +235,16 @@ class quiz_game:
 
         for answer in question[1]:            #alle Antwortmöglichkeiten durchgehen (Am Ende der Schleife ist antwort immer der letzte Wert)
             # Button erstellen
-            button = tkinter.Button(self.frame_game, text=answer)
+            button = tkinter.Button(self.button_frame, text=answer)
             button.config(command=lambda a=answer, b=button: self.check_answer(a, b)) #a=platzhalter
-            button.pack(pady=5)                                                      #a=ist nur eine Kopie vom aktuellen Wert damit jeder Button seine eigene Antwort behält
+
+            button.grid(row=row, column=col, padx=10, pady=10)
             self.buttons.append(button)
 
-            button.pack(pady=5)              #nutton im Fenster anzeigen
-
-            self.buttons.append(button)          #button speichern (damit wir ihn später ändern können)
+            col += 1
+            if col > 1:         #größer als 2 (buttons) neue Zeile
+                col = 0
+                row += 1
 
     def check_answer(self, selected_answer, button):
 
