@@ -215,13 +215,20 @@ class quiz_game:
 
         self.button_frame = tkinter.Frame(self.frame_game)     #Container für antwort buttons 2v2
         self.button_frame.pack()
-
+        #beenden knopf
         self.exit_button = tkinter.Button(self.frame_game,text="Beenden",command=self.back_to_menu_2)
         self.exit_button.pack(pady=10)
+        #weiter knopf
+        self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)         #knopf in game weil dan nur 1 mal erstellt wird
+        self.next_button.pack_forget()
+        self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
 
         self.buttons = []
 
         self.load_question()
+
+    def on_enter(self, event):                                  #event : objekt infos wie mausposition, welche taste gedrückt ist etc
+        self.next_question()
 
     def back_to_menu_2(self):
         self.frame_game.destroy()
@@ -263,13 +270,7 @@ class quiz_game:
         else:
             button.config(bg="red")
 
-        self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)
         self.next_button.pack(pady=10)
-        #nexte frage an enter binden
-        self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
-
-    def on_enter(self, event):                                  #event : objekt infos wie mausposition, welche taste gedrückt ist etc
-        self.next_question()
 
     def next_question(self):
         self.current_question += 1
