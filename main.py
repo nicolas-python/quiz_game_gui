@@ -263,8 +263,13 @@ class quiz_game:
         else:
             button.config(bg="red")
 
-        self.save_score()
-        self.root.after(100,self.next_question)
+        self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)
+        self.next_button.pack(pady=10)
+        #nexte frage an enter binden
+        self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
+
+    def on_enter(self, event):                                  #event : objekt infos wie mausposition, welche taste gedrückt ist etc
+        self.next_question()
 
     def next_question(self):
         self.current_question += 1
