@@ -54,69 +54,69 @@ class quiz_game:
         self.current_question = 0
         self.questions = [
             #Grundfunktionen
-            ("Was macht int()?",["Ganzzahl","Text","Kommas","True/false"],"Ganzzahl"),           #Wert wird in eine Ganzzahl umgewandelt
-            ("Was macht str()?",["Zahl","Text","Komma","Liste"],"Text"),                         #Wandelt alles in text um 5 wird zu"5"
-            ("Was ist bool?",["Text","True/False","Zahl","Liste"],"True/False"),                 #Datentyp für Wahr oder Falsch
-            ("Was macht float()?",["Ganzzahl","Text","Kommazahl","Liste"],"Kommazahl"),          #wandelt in Kommazahl um (5 zu 5.0)
-            ("Was macht import?",["Funktion","lädt Modul","Variable","erstellt schleife"],"lädt Modul"), #lädt externe Module/Bibliotheken
-            ("Was ist print()?",["Ausgabe","Eingabe","Datei","Liste"],"Ausgabe"),                 #gibt Text aus
-            ("Was ist input()?",["Berechnung","Eingabe","Ausgabe","Datai"],"Eingabe"),            #Benutzer schreibt etwas
+            ("Was macht int()?",["Ganzzahl","Text","Kommas","True/false"],"Ganzzahl","Wert wird in eine Ganzzahl umgewandelt(5 zu 5.0"),
+            ("Was macht str()?",["Zahl","Text","Komma","Liste"],"Text","Wandelt alles in text um 5 wird zu '5'"),
+            ("Was ist bool?",["Text","True/False","Zahl","Liste"],"True/False","Datentyp für Wahr oder Falsch(True/False)"),
+            ("Was macht float()?",["Ganzzahl","Text","Kommazahl","Liste"],"Kommazahl","wandelt in Kommazahl um (5 zu 5.0)"),
+            ("Was macht import?",["Funktion","lädt Modul","Variable","erstellt schleife"],"lädt Modul","lädt externe Module/Bibliotheken aus Phyton"),
+            ("Was ist print()?",["Ausgabe","Eingabe","Datei","Liste"],"Ausgabe","gibt Text aus"),
+            ("Was ist input()?",["Berechnung","Eingabe","Ausgabe","Datai"],"Eingabe","Benutzer schreibt etwas"),
             #funktionen
-            ("Was ist def?",["Funktion", "Variable", "Schleife", "Import"],"Funktion"),         #erstellt eine eigene Funktion
-            ("Was macht return?",["Ausgabe", "Rückgabe", "Abbruch", "Vergleich"],"Rückgabe"),     #gibt ein Ergebnis aus einer Funktion zurück
-            ("Was ist Parameter?",["Variable", "Liste", "Funktion", "Wert"],"Wert"),              #wert, der einer Funktion übergeben wird
+            ("Was ist def?",["Funktion", "Variable", "Schleife", "Import"],"Funktion","erstellt eine eigene Funktion"),
+            ("Was macht return?",["Ausgabe", "Rückgabe", "Abbruch", "Vergleich"],"Rückgabe","gibt ein Ergebnis aus einer Funktion zurück"),
+            ("Was ist Parameter?",["Variable", "Liste", "Funktion", "Wert"],"Wert","wert, der einer Funktion übergeben wird"),
             #Listen & Text
-            ("Was macht len()?",["Index", "Zählen", "Länge", "Sortieren"],"Länge"),              #zählt Zeichen oder Elemente
-            ("Was macht split()?",["Trennen", "Verbinden", "Löschen","Sortieren"],"Trennen"),   #trennt Text in einzelne Teile (Liste)
-            ("Was macht .strip()?",["Teilen", "Text kürzen", "Zählen","Leerzeichen entfernen"],"Leerzeichen entfernen"),  #entfernt Leerzeichen am Anfang/Ende (\n wäre Zeilenumbruch)
-            ("Was macht .lower()?",["klein", "groß", "löschen", "trennen"],"klein"),           #macht alles klein
-            ("Was macht .upper()?",["anhängen", "klein", "groß", "löschen"],"groß"),           #macht alles groß
+            ("Was macht len()?",["Index", "Zählen", "Länge", "Sortieren"],"Länge","zählt Zeichen oder Elemente"),
+            ("Was macht split()?",["Trennen", "Verbinden", "Löschen","Sortieren"],"Trennen","trennt Text in einzelne Teile (Liste)"),
+            ("Was macht .strip()?",["Teilen", "Text kürzen", "Zählen","Leerzeichen entfernen"],"Leerzeichen entfernen","entfernt Leerzeichen am Anfang/Ende (\\n wäre Zeilenumbruch)"),
+            ("Was macht .lower()?",["klein", "groß", "löschen", "trennen"],"klein","macht alles klein"),
+            ("Was macht .upper()?",["anhängen", "klein", "groß", "löschen"],"groß","macht alles groß"),
             #Listen Funktionen
-            ("Was macht append()?",["Hinzufügen", "Löschen", "Sortieren", "Teilen"],"Hinzufügen"),  #fügt ein Element ans Ende der Liste
-            ("Was macht remove()?",["Sortieren", "Hinzufügen", "Löschen", "Kopieren"],"Löschen"),    #entfernt ein bestimmtes Element
-            ("Was macht pop()?",["Letztes", "Erstes", "Alles", "Sortieren"],"Letztes"),              #entfernt das !letzte! Element
-            ("Was macht sort()?",["Mischen", "Sortieren", "Löschen", "Kopieren"],"Sortieren"),       #sortiert eine Liste
-            ("Was ist []?",["Liste", "Text", "Zahl", "Funktion"],"Liste"),                         #speichert mehrere Werte in einer Sammlung
-            ("Was macht index?",["Position", "Wert", "Sortieren", "Zählen"],"Position"),             #gibt die Position eines Elements in einer Liste zurück
-            ("Was macht in?",["Addieren", "Vergleich", "Sortieren", "Enthalten"],"Enthalten"),       #prüft ob etwas in einer Liste ist
+            ("Was macht append()?",["Hinzufügen", "Löschen", "Sortieren", "Teilen"],"Hinzufügen","fügt ein Element ans Ende der Liste"),
+            ("Was macht remove()?",["Sortieren", "Hinzufügen", "Löschen", "Kopieren"],"Löschen","entfernt ein bestimmtes Element"),
+            ("Was macht pop()?",["Letztes", "Erstes", "Alles", "Sortieren"],"Letztes","entfernt das !letzte! Element"),
+            ("Was macht sort()?",["Mischen", "Sortieren", "Löschen", "Kopieren"],"Sortieren","sortiert eine Liste"),
+            ("Was ist []?",["Liste", "Text", "Zahl", "Funktion"],"Liste","speichert mehrere Werte in einer Sammlung"),
+            ("Was macht index?",["Position", "Wert", "Sortieren", "Zählen"],"Position","gibt die Position eines Elements in einer Liste zurück"),
+            ("Was macht in?",["Addieren", "Vergleich", "Sortieren", "Enthalten"],"Enthalten","prüft ob etwas in einer Liste ist"),
             #Schleifen / range
-            ("Was macht for?",["Funktion", "Bedingung", "Schleife", "Variable"],"Schleife"),         #wiederholt Code eine bestimmte Anzahl
-            ("Was macht while?",["Vergleich", "Wiederholung", "Funktion", "Import"],"Wiederholung"), #wiederholt solange eine Bedingung stimmt
-            ("Was macht break?",["Stop", "Weiter", "Start", "Vergleich"],"Stop"),                    #beendet eine Schleife sofort
-            ("Was macht continue?",["Reset", "Stop", "Weiter", "Ende"],"Weiter"),                    #überspringt einen Schritt
-            ("Was macht range(5)?",["Text", "Liste löschen", "Sortieren", "Zahlenreihe"],"Zahlenreihe"), #erzeugt eine Zahlenreihe (Start bei 0)
-            ("Was gibt range(5) zurück?",["0-5", "1-5", "0-4", "1-4"], "0-4"),                       #Liste von Zahlen 0 bis 4
-            ("Wofür nutzt man range()?",["Speichern", "Vergleich", "Sortieren", "Wiederholung"],"Wiederholung"), #für Wiederholungen in for-Schleifen
+            ("Was macht for?",["Funktion", "Bedingung", "Schleife", "Variable"],"Schleife","wiederholt Code eine bestimmte Anzahl"),
+            ("Was macht while?",["Vergleich", "Wiederholung", "Funktion", "Import"],"Wiederholung","wiederholt solange eine Bedingung stimmt"),
+            ("Was macht break?",["Stop", "Weiter", "Start", "Vergleich"],"Stop","beendet eine Schleife sofort"),
+            ("Was macht continue?",["Reset", "Stop", "Weiter", "Ende"],"Weiter","überspringt einen Schritt"),
+            ("Was macht range(5)?",["Text", "Liste löschen", "Sortieren", "Zahlenreihe"],"Zahlenreihe","erzeugt eine Zahlenreihe (Start bei 0)"),
+            ("Was gibt range(5) zurück?",["0-5", "1-5", "0-4", "1-4"], "0-4","Liste von Zahlen 0 bis 4"),
+            ("Wofür nutzt man range()?",["Speichern", "Vergleich", "Sortieren", "Wiederholung"],"Wiederholung","für Wiederholungen in for-Schleifen"),
             #Dateien
-            ("Was macht open()?",["Datei öffnen", "Liste erstellen", "Text löschen", "Sortieren"],"Datei"),             ## öffnet oder erstellt eine Datei
-            ("Was macht open('r')?",["Löschen", "Schreiben", "Lesen", "Erstellen"],"Lesen"),        #öffnet Datei zum Lesen
-            ("Was macht open('w')?",["Lesen", "Schreiben", "Anhängen", "Vergleichen"],"Schreiben"),                                                  #öffnet Datei zum Schreiben
+            ("Was macht open()?",["Datei öffnen", "Liste erstellen", "Text löschen", "Sortieren"],"Datei","öffnet oder erstellt eine Datei"),
+            ("Was macht open('r')?",["Löschen", "Schreiben", "Lesen", "Erstellen"],"Lesen","öffnet Datei zum Lesen"),
+            ("Was macht open('w')?",["Lesen", "Schreiben", "Anhängen", "Vergleichen"],"Schreiben","öffnet Datei zum Schreiben"),
             #Bedingungen
-            ("Was macht if?",["Bedingung", "Schleife", "Funktion", "Variable"],"Bedingung"),    #prüft ob die bedingung wahr ist
-            ("Was macht else?",["Start", "Wenn", "Stop", "Sonst"],"Sonst"),                     #alternative bedingungen wenn if falsch ist
-            ("Was macht elif?",["Sonst-wenn", "Immer", "Stop", "Start"],"Sonst-wenn"),          #weitere Bedingung wenn if falsch ist
-            ("Was macht ==?",["Kleiner", "Ungleich", "Vergleich", "Größer"],"Vergleich"),          #prüft ob zwei Werte gleich sind
-            ("Was macht !=?",["Zuweisung", "Gleich", "Vergleich", "Ungleich"],"Ungleich"),      #prüft ob Werte ungleich sind
-            ("Was macht isalpha()?",["Leerzeichen", "Zahlen", "Buchstaben", "Symbole"],"Buchstaben"),   #prüft ob nur Buchstaben vorhanden sind
-            ("Was macht isdigit()?",["Zahlen", "Buchstaben", "Text", "Liste"],"Zahlen"),        #prüft ob nur Zahlen vorhanden sind
-            ("Was macht < ?",["gleich", "größer", "kleiner", "ungleich"],"kleiner"),            #kleiner als
-            ("Was macht > ?",["größer", "kleiner", "gleich", "ungleich"],"größer"),             #größer als
+            ("Was macht if?",["Bedingung", "Schleife", "Funktion", "Variable"],"Bedingung","prüft ob die bedingung wahr ist"),
+            ("Was macht else?",["Start", "Wenn", "Stop", "Sonst"],"Sonst","alternative bedingungen wenn if falsch ist"),
+            ("Was macht elif?",["Sonst-wenn", "Immer", "Stop", "Start"],"Sonst-wenn","weitere Bedingung wenn if falsch ist"),
+            ("Was macht ==?",["Kleiner", "Ungleich", "Vergleich", "Größer"],"Vergleich","prüft ob zwei Werte gleich sind"),
+            ("Was macht !=?",["Zuweisung", "Gleich", "Vergleich", "Ungleich"],"Ungleich","prüft ob Werte ungleich sind"),
+            ("Was macht isalpha()?",["Leerzeichen", "Zahlen", "Buchstaben", "Symbole"],"Buchstaben","prüft ob nur Buchstaben vorhanden sind"),
+            ("Was macht isdigit()?",["Zahlen", "Buchstaben", "Text", "Liste"],"Zahlen","prüft ob nur Zahlen vorhanden sind"),
+            ("Was macht < ?",["gleich", "größer", "kleiner", "ungleich"],"kleiner","kleiner als"),
+            ("Was macht > ?",["größer", "kleiner", "gleich", "ungleich"],"größer","größer als"),
             #Rechnen/Operatoren
-            ("Was macht +?",["Minus", "Mal", "Plus", "Rest"],"Plus"),                   #addiert zwei Werte
-            ("Was macht -?",["Plus", "Minus", "Mal", "Geteilt"],"Minus"),               #subtrahiert Werte
-            ("Was macht *?",["Geteilt", "Mal", "Plus", "Rest"],"Mal"),                  #multipliziert Werte
-            ("Was macht /?",["Rest", "Mal", "Plus", "Geteilt"],"Geteilt"),              #teilt Werte
-            ("Was macht %?",["Rest", "Division", "Multiplikation", "Addition"], "Rest"), #gibt den Rest einer Division
+            ("Was macht +?",["Minus", "Mal", "Plus", "Rest"],"Plus","addiert zwei Werte"),
+            ("Was macht -?",["Plus", "Minus", "Mal", "Geteilt"],"Minus","subtrahiert Werte"),
+            ("Was macht *?",["Geteilt", "Mal", "Plus", "Rest"],"Mal","multipliziert Werte"),
+            ("Was macht /?",["Rest", "Mal", "Plus", "Geteilt"],"Geteilt","teilt Werte"),
+            ("Was macht %?",["Rest", "Division", "Multiplikation", "Addition"], "Rest","gibt den Rest einer Division"),
             #GUI (tkinter)
-            ("Was ist tkinter?",["Spiel", "Datenbank", "GUI", "Text"],"GUI"),            #bibliothek für benutzeroberflächen (Grafische Darstellung)
-            ("Was macht pack()?",["Sortieren", "Raster", "Position", "Stapel"],"Stapel"),    #ordnet Elemente untereinander an
-            ("Was macht grid()?",["Stapel", "Raster", "Liste", "Position"],"Raster"),        #ordnet Elemente in Tabellenform
-            ("Was macht place()?",["Position", "Raster", "Stapel", "Liste"],"Position"),     #setzt Elemente an feste Position
+            ("Was ist tkinter?",["Spiel", "Datenbank", "GUI", "Text"],"GUI","bibliothek für benutzeroberflächen (Grafische Darstellung"),
+            ("Was macht pack()?",["Sortieren", "Raster", "Position", "Stapel"],"Stapel","ordnet Elemente untereinander an"),
+            ("Was macht grid()?",["Stapel", "Raster", "Liste", "Position"],"Raster","ordnet Elemente in Tabellenform"),
+            ("Was macht place()?",["Position", "Raster", "Stapel", "Liste"],"Position","setzt Elemente an feste Position"),
             #Entry / GUI Text
-            ("Was macht entry.get()?",["Schreiben", "Lesen", "Löschen", "Sortieren"],"Lesen"),     #holt Text aus Eingabefeld
-            ("Was macht insert()?",["Teilen","Löschen","Vergleichen","Schrieben"],"Schreiben"),    #fügt Text ein
-            ("Was macht delete()?",["Ende","Trennen","Löschen","Lesen"],"Löschen"),                #löscht Text
-            ("Was ist entry?",["Feld","Sortieren","Lesen","Stapeln"],"Feld"),                 #Eingabefeld in GUI
+            ("Was macht entry.get()?",["Schreiben", "Lesen", "Löschen", "Sortieren"],"Lesen","holt Text aus Eingabefeld"),
+            ("Was macht insert()?",["Teilen","Löschen","Vergleichen","Schrieben"],"Schreiben","fügt Text ein"),
+            ("Was macht delete()?",["Ende","Trennen","Löschen","Lesen"],"Löschen","löscht Text"),
+            ("Was ist entry?",["Feld","Sortieren","Lesen","Stapeln"],"Feld","Eingabefeld in GUI")
         ]
     def create_player(self):
         self.frame_buttons.pack_forget()
@@ -222,7 +222,9 @@ class quiz_game:
         self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)         #knopf in game weil dan nur 1 mal erstellt wird
         self.next_button.pack_forget()
         self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
-
+        #Erklärungstext
+        self.explanation_label = tkinter.Label(self.frame_game, text="", fg="blue", wraplength=300)
+        self.explanation_label.pack(pady=10)
         self.buttons = []
 
         self.load_question()
