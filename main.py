@@ -55,7 +55,7 @@ class quiz_game:
         self.questions = [
             #Grundfunktionen
             ("Was macht int()?",["Ganzzahl","Text","Kommas","True/false"],"Ganzzahl","Wert wird in eine Ganzzahl umgewandelt(5 zu 5.0"),
-            ("Was macht str()?",["Zahl","Text","Komma","Liste"],"Text","Wandelt alles in text um 5 wird zu '5'"),
+            ("Was macht str()?",["Zahl","Text","Komma","Liste"],"Text","Wandelt alles in text um 5 wird zu '5'(gänsefüße''text'' "),
             ("Was ist bool?",["Text","True/False","Zahl","Liste"],"True/False","Datentyp für Wahr oder Falsch(True/False)"),
             ("Was macht float()?",["Ganzzahl","Text","Kommazahl","Liste"],"Kommazahl","wandelt in Kommazahl um (5 zu 5.0)"),
             ("Was macht import?",["Funktion","lädt Modul","Variable","erstellt schleife"],"lädt Modul","lädt externe Module/Bibliotheken aus Phyton"),
@@ -223,7 +223,7 @@ class quiz_game:
         self.next_button.pack_forget()
         self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
         #Erklärungstext
-        self.explanation_label = tkinter.Label(self.frame_game, text="", fg="blue", wraplength=300)
+        self.explanation_label = tkinter.Label(self.frame_game, text="", fg="blue", wraplength=300)      #wraplength = ab welcher Breite der Text automatisch umbricht
         self.explanation_label.pack(pady=10)
         self.buttons = []
 
@@ -248,6 +248,8 @@ class quiz_game:
 
         question = self.questions[self.current_question]   #aktuelle Frage holen
         self.question_label.config(text=question[0])        #frage im Label anzeigen
+        #erklärung zurücksetzen
+        self.explanation_label.config(text="")
 
         for answer in question[1]:            #alle Antwortmöglichkeiten durchgehen (Am Ende der Schleife ist antwort immer der letzte Wert)
             # Button erstellen
@@ -266,6 +268,9 @@ class quiz_game:
 
         correct_answer = self.questions[self.current_question][2]
 
+        #Erklärung holen
+        explanation = self.questions[self.current_question][3]
+
         if selected_answer == correct_answer:
             button.config(bg="green")
             self.score_v += 1
@@ -273,6 +278,7 @@ class quiz_game:
             button.config(bg="red")
 
         self.next_button.pack(pady=10)
+        self.explanation_label.config(text=explanation)
 
     def next_question(self):
         self.current_question += 1
