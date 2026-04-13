@@ -11,7 +11,7 @@ Ein Quiz-Spiel mit tkinter, um Python-Vokabeln zu lernen und zu wiederholen.
 - Erklärungen zu jeder Frage nach der Antwort
 - Spiel kann jederzeit ins Hauptmenü beendet werden
   
-##Installation
+## Installation
 1. Projekt herunterladen
   - Öffne die GitHub Seite
   - Klicke auf grünen Button „Code“
