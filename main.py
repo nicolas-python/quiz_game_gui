@@ -114,7 +114,7 @@ class quiz_game:
             ("Was macht place()?",["Position", "Raster", "Stapel", "Liste"],"Position","setzt Elemente an feste Position"),
             #Entry / GUI Text
             ("Was macht entry.get()?",["Schreiben", "Lesen", "Löschen", "Sortieren"],"Lesen","holt Text aus Eingabefeld"),
-            ("Was macht insert()?",["Teilen","Löschen","Vergleichen","Schrieben"],"Schreiben","fügt Text ein"),
+            ("Was macht insert()?",["Teilen","Löschen","Vergleichen","Schreiben"],"Schreiben","fügt Text ein"),
             ("Was macht delete()?",["Ende","Trennen","Löschen","Lesen"],"Löschen","löscht Text"),
             ("Was ist entry?",["Feld","Sortieren","Lesen","Stapeln"],"Feld","Eingabefeld in GUI")
         ]
@@ -246,6 +246,8 @@ class quiz_game:
             for button in self.buttons:
                 button.destroy()
 
+            self.buttons = []
+
         question = self.questions[self.current_question]   #aktuelle Frage holen
         self.question_label.config(text=question[0])        #frage im Label anzeigen
         #erklärung zurücksetzen
@@ -276,6 +278,15 @@ class quiz_game:
             self.score_v += 1
         else:
             button.config(bg="red")
+
+        #richtige Antwort IMMER grün anzeigen
+        for all_button in self.buttons:
+            if all_button["text"] == correct_answer:
+                all_button.config(bg="green")
+
+        #alle Buttons deaktivieren das nur noch 1x mal wählen möglich ist
+        for all_button in self.buttons:
+            all_button.config(state="disabled")
 
         self.next_button.pack(pady=10)
         self.explanation_label.config(text=explanation)
