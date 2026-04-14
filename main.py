@@ -10,6 +10,7 @@ class quiz_game:
         #verbindung datenbank
         self.conn = sqlite3.connect("quiz.db",)
         self.c = self.conn.cursor()
+        self.user_answers = []                                  #liste erstellen für gespeicherte antworten
 
         # Tabelle erstellen, falls noch nicht vorhanden
         self.c.execute(
@@ -204,6 +205,7 @@ class quiz_game:
     def game(self):
         self.current_question = 0
         self.score_v = 0
+        self.user_answers = []    #pro spiel neue liste damit alte weg sind(Start ein neues Spiel = alles zurücksetzen)
 
         random.shuffle(self.questions)                          #mischt Reihenfolge zufällig (fragen Reihenfolge)
 
@@ -215,6 +217,10 @@ class quiz_game:
 
         self.button_frame = tkinter.Frame(self.frame_game)     #Container für antwort buttons 2v2
         self.button_frame.pack()
+
+        self.back_button = tkinter.Button(self.frame_game, text="Zurück", command=self.previous_question)
+        self.back_button.pack(pady=5)
+
         #beenden knopf
         self.exit_button = tkinter.Button(self.frame_game,text="Beenden",command=self.back_to_menu_2)
         self.exit_button.pack(pady=10)
@@ -290,6 +296,30 @@ class quiz_game:
 
         self.next_button.pack(pady=10)
         self.explanation_label.config(text=explanation)
+        self.user_answers.append(selected_answer)
+
+    def previous_question(self):
+        if self.current_question > 0:
+            self.current_question -= 1
+            self.load_question()
+
+            #alte antwort
+            prev_answer = self.user_answers[self.current_question]
+            correct_answer = self.questions[self.current_question][2]
+
+            for button in self.buttons:
+                if button["text"] == prev_answer:
+                    if prev_answer == correct_answer:
+                        button.config(bg="green")
+                    else:
+                        button.config(bg="red")
+
+                if button["text"] == correct_answer:
+                    button.config(bg="green")
+
+                # Buttons deaktivieren
+            for button in self.buttons:
+                button.config(state="disabled")
 
     def next_question(self):
         self.current_question += 1
