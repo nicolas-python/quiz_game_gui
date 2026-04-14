@@ -227,16 +227,12 @@ class quiz_game:
         #weiter knopf
         self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)         #knopf in game weil dan nur 1 mal erstellt wird
         self.next_button.pack_forget()
-        self.root.bind("<Return>", self.on_enter)               #<Return> = taste enter auf der Tastatur
         #Erklärungstext
         self.explanation_label = tkinter.Label(self.frame_game, text="", fg="blue", wraplength=300)      #wraplength = ab welcher Breite der Text automatisch umbricht
         self.explanation_label.pack(pady=10)
         self.buttons = []
 
         self.load_question()
-
-    def on_enter(self, event):                                  #event : objekt infos wie mausposition, welche taste gedrückt ist etc
-        self.next_question()
 
     def back_to_menu_2(self):
         self.frame_game.destroy()
