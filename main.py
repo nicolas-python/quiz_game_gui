@@ -221,12 +221,14 @@ class quiz_game:
         self.back_button = tkinter.Button(self.frame_game, text="Zurück", command=self.previous_question)
         self.back_button.pack(pady=5)
 
-        #beenden knopf
-        self.exit_button = tkinter.Button(self.frame_game,text="Beenden",command=self.back_to_menu_2)
-        self.exit_button.pack(pady=10)
         #weiter knopf
         self.next_button = tkinter.Button(self.frame_game,text="Weiter",command=self.next_question)         #knopf in game weil dan nur 1 mal erstellt wird
         self.next_button.pack_forget()
+
+        #beenden knopf
+        self.exit_button = tkinter.Button(self.frame_game,text="Beenden",command=self.back_to_menu_2)
+        self.exit_button.pack(pady=10)
+
         #Erklärungstext
         self.explanation_label = tkinter.Label(self.frame_game, text="", fg="blue", wraplength=300)      #wraplength = ab welcher Breite der Text automatisch umbricht
         self.explanation_label.pack(pady=10)
@@ -269,7 +271,6 @@ class quiz_game:
                 row += 1
 
     def check_answer(self, selected_answer, button):
-
         correct_answer = self.questions[self.current_question][2]
 
         #Erklärung holen
@@ -402,7 +403,7 @@ class quiz_game:
             return
 
         self.c.execute(
-            "UPDATE quiz SET score = ? WHERE player = ?",
+            "UPDATE quiz SET score = score + ? WHERE player = ?",
             (self.score_v, self.selected_player))
         self.conn.commit()
 
