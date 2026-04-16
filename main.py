@@ -216,6 +216,11 @@ class quiz_game:
         self.user_answers = []    #pro spiel neue liste damit alte weg sind(Start ein neues Spiel = alles zurücksetzen)
 
         random.shuffle(self.questions)                          #mischt Reihenfolge zufällig (fragen Reihenfolge)
+        #fragenzähler frame
+        self.frame_game = tkinter.Frame(self.root)
+        self.frame_game.pack()
+        self.progress_label = tkinter.Label(self.frame_game, text="")
+        self.progress_label.pack()
 
         self.frame_game = tkinter.Frame(self.root)              #Container für spiel seite
         self.frame_game.pack()
@@ -278,6 +283,13 @@ class quiz_game:
             if col > 1:         #größer als 2 (buttons) neue Zeile
                 col = 0
                 row += 1
+
+        self.question_counter()
+
+    def question_counter(self):
+        total = len(self.questions)
+        current = self.current_question + 1
+        self.progress_label.config(text=f"Frage {current} von {total}")
 
     def check_answer(self, selected_answer, button):
         correct_answer = self.questions[self.current_question][2]
