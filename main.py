@@ -146,7 +146,7 @@ class quiz_game:
         name = self.entry_name.get()
 
         if name == "":
-            mb.showwarning("Fehler","Bitte Namen eingeben")
+            mb.showinfo("Fehler","Bitte Namen eingeben")
             return
 
         score = 0
@@ -187,8 +187,12 @@ class quiz_game:
         button_choose.pack(pady=10)
         button_delete = tkinter.Button(self.frame_select_player,text="Spieler löschen",command=self.delete_player)
         button_delete.pack(pady=10)
-        button_back = tkinter.Button(self.frame_select_player, text="Zurück", command=self.set_player)
+        button_back = tkinter.Button(self.frame_select_player, text="Zurück", command=self.back_to_menu_select)
         button_back.pack(pady=10)
+
+    def back_to_menu_select(self):
+        self.frame_select_player.destroy()
+        self.frame_buttons.pack(expand=True)
 
     def set_player(self):
         selected = self.listbox.get(tkinter.ACTIVE)
