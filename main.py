@@ -21,6 +21,10 @@ class quiz_game:
             score INTEGER NOT NULL
         )
         """)
+        try:
+            self.c.execute("ALTER TABLE quiz ADD COLUMN games INTEGER DEFAULT 0")
+        except:
+            pass
 
         self.conn.commit()
         self.root = root
@@ -237,6 +241,7 @@ class quiz_game:
         self.load_question()
 
     def back_to_menu_2(self):
+        self.save_score()
         self.frame_game.destroy()
         self.frame_buttons.pack(expand=True)
 
@@ -325,6 +330,7 @@ class quiz_game:
             self.load_question()
         else:
             mb.showinfo("Fertig",f"Dein Score: {self.score_v}")
+            self.save_score()
 
     def show_score(self):
         self.frame_buttons.pack_forget()
@@ -341,12 +347,12 @@ class quiz_game:
         self.listbox.pack(pady=10)
 
         # aus datenbank spieler holen
-        self.c.execute("SELECT player, score FROM quiz")
+        self.c.execute("SELECT player, score,games FROM quiz")
         scores = self.c.fetchall()
 
         # in liste eintragen
         for s in scores:
-            self.listbox.insert(tkinter.END,f"{s[0]}, {s[1]} Punkte")
+            self.listbox.insert(tkinter.END,f"{s[0]} - {s[1]} Punkte - {s[2]} Spiele")
 
         button_back = tkinter.Button(self.frame_score, text="Zurück", command=self.back_to_menu_1)
         button_back.pack(pady=10)
@@ -403,7 +409,7 @@ class quiz_game:
             return
 
         self.c.execute(
-            "UPDATE quiz SET score = score + ? WHERE player = ?",
+            "UPDATE quiz SET score = score + ?, games = games +1 WHERE player = ?",
             (self.score_v, self.selected_player))
         self.conn.commit()
 
