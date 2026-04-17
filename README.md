@@ -24,7 +24,7 @@ Ein Quiz-Spiel mit tkinter, um Python-Vokabeln zu lernen und zu wiederholen.
   - Du siehst einen Ordner wie: quiz_game_gui-main
 
 3.Spiel Starten
-   Im Ordner: quiz_game_gui-main
+  - Im Ordner: quiz_game_gui-main
   - SHIFT + Rechtsklick
   - PowerShell öffnen ("In Terminal Öffnen" klicken )
   - dann direkt: py main.py
