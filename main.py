@@ -213,6 +213,8 @@ class quiz_game:
     def game(self):
         self.current_question = 0
         self.score_v = 0
+        self.correct_count = 0
+        self.wrong_count = 0
         self.user_answers = []    #pro spiel neue liste damit alte weg sind(Start ein neues Spiel = alles zurücksetzen)
 
         random.shuffle(self.questions)                          #mischt Reihenfolge zufällig (fragen Reihenfolge)
@@ -300,8 +302,10 @@ class quiz_game:
         if selected_answer == correct_answer:
             button.config(bg="green")
             self.score_v += 1
+            self.correct_count += 1
         else:
             button.config(bg="red")
+            self.wrong_count += 1
 
         #richtige Antwort IMMER grün anzeigen
         for all_button in self.buttons:
@@ -345,8 +349,11 @@ class quiz_game:
         if self.current_question < len(self.questions):                 #<len() = bin ich noch im Bereich
             self.load_question()
         else:
-            mb.showinfo("Fertig",f"Dein Score: {self.score_v}")
+            mb.showinfo("Fertig,Ergebnis",f"Richtig: {self.correct_count}\n"
+                                                       f"Falsch: {self.wrong_count}\n "
+                                                       f"Dein Score: {self.score_v}")
             self.save_score()
+
 
     def show_score(self):
         self.frame_buttons.pack_forget()
