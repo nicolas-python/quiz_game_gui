@@ -29,7 +29,7 @@ class quiz_game:
         self.conn.commit()
         self.root = root
         self.root.title("Vokabel Quiz")
-        self.root.geometry("400x350")
+        self.root.geometry("300x400")
 
         #variablen listen zwischenspiechern
         self.selected_player = None
@@ -346,12 +346,28 @@ class quiz_game:
     def next_question(self):
         self.current_question += 1
 
-        if self.current_question < len(self.questions):                 #<len() = bin ich noch im Bereich
+        if self.current_question < len(self.questions):              #<len() = bin ich noch im Bereich
             self.load_question()
         else:
+            total = len(self.questions)
+            prozent = (self.correct_count / total) * 100
+
+            if prozent >= 90:
+                grade = "Sehr gut"
+            elif prozent >= 75:
+                grade = "Gut"
+            elif prozent >= 60:
+                grade = "Befriedigend"
+            elif prozent >= 50:
+                grade = "Ausreichend"
+            else:
+                grade = "Verbesserungswürdig"
+
             mb.showinfo("Fertig,Ergebnis",f"Richtig: {self.correct_count}\n"
                                                        f"Falsch: {self.wrong_count}\n "
-                                                       f"Dein Score: {self.score_v}")
+                                                       f"Dein Score: {self.score_v}\n"
+                                                       f"Prozent: {prozent:.1f}%\n"
+                                                       f"Note: {grade}")
             self.save_score()
 
 
