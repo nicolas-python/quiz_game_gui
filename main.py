@@ -294,10 +294,10 @@ class quiz_game:
         self.progress_label.config(text=f"Frage {current} von {total}")
 
     def check_answer(self, selected_answer, button):
+        #holen aus Orginal Frage
         correct_answer = self.questions[self.current_question][2]
-
-        #Erklärung holen
         explanation = self.questions[self.current_question][3]
+
 
         if selected_answer == correct_answer:
             button.config(bg="green")
@@ -318,16 +318,21 @@ class quiz_game:
 
         self.next_button.pack(pady=10)
         self.explanation_label.config(text=explanation)
-        self.user_answers.append(selected_answer)
-
+        #Speichern von "Spielverlauf"
+        self.user_answers.append((selected_answer, correct_answer, explanation))    #append fügt genau 1 Objekt in die Liste ein
+                                                                                    #mehrere Werte werden vorher als Tuple gebündelt also = append(tuple(wert1, wert2, wert3))
     def previous_question(self):
         if self.current_question > 0:
             self.current_question -= 1
             self.load_question()
 
-            #alte antwort
-            prev_answer = self.user_answers[self.current_question]
-            correct_answer = self.questions[self.current_question][2]
+            #antowrt erklärung ausgewählte antwort
+            data = self.user_answers[self.current_question]       #fragen aus gespeicherten verlauf holen
+
+            prev_answer = data[0]
+            correct_answer = data[1]
+            explanation = data[2]
+            self.explanation_label.config(text=explanation)
 
             for button in self.buttons:
                 if button["text"] == prev_answer:
