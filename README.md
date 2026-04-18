@@ -7,8 +7,7 @@ Ein Quiz-Spiel mit tkinter, um Python-Vokabeln zu lernen und zu wiederholen.
 - Score und Spieler wird in einer SQLite-Datenbank gespeichert
 - Zufällige Fragenreihenfolge
 - Richtige / falsche Antworten werden farbig angezeigt
-- Weiter-Button
-- Zürück-Button (alte fragen nochmal ankucken)
+- Navigation mit Weiter- und Zurück-Button (Anzeige von vorheriger Antwort, korrekter Lösung und Erklärung)
 - Erklärungen zu jeder Frage nach der Antwort
 - Spiel kann jederzeit ins Hauptmenü beendet werden
   
@@ -31,7 +30,6 @@ Ein Quiz-Spiel mit tkinter, um Python-Vokabeln zu lernen und zu wiederholen.
  
 ## Steuerung
 - Maus: Antworten anklicken
-- Enter: nächste Frage
 - "Weiter": nächste Frage
 - "Beenden": zurück ins Hauptmenü
 
