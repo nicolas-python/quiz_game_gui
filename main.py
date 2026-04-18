@@ -387,7 +387,7 @@ class quiz_game:
         label = tkinter.Label(self.frame_score, text="Score:")
         label.pack(pady=10)
 
-        self.listbox = tkinter.Listbox(self.frame_score)
+        self.listbox = tkinter.Listbox(self.frame_score, width=25)
         self.listbox.pack(pady=10)
 
         # aus datenbank spieler holen
