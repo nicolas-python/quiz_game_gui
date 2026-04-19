@@ -273,6 +273,8 @@ class quiz_game:
         #erklärung zurücksetzen
         self.explanation_label.config(text="")
 
+        self.next_button.pack_forget()
+
         for answer in question[1]:            #alle Antwortmöglichkeiten durchgehen (Am Ende der Schleife ist antwort immer der letzte Wert)
             # Button erstellen
             button = tkinter.Button(self.button_frame, text=answer)
@@ -306,6 +308,8 @@ class quiz_game:
         else:
             button.config(bg="red")
             self.wrong_count += 1
+
+        self.next_button.pack(pady=10)
 
         #richtige Antwort IMMER grün anzeigen
         for all_button in self.buttons:
