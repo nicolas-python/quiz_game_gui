@@ -375,6 +375,12 @@ class quiz_game:
                                                        f"Note: {grade}")
             self.save_score()
 
+            if mb.askyesno("Nochmal spielen?", "Willst du direkt nochmal spielen?"):            #askyesno=stellt eine Frage mit Entscheidung ja oder nein
+                self.frame_game.destroy()
+                self.play()
+            else:
+                self.frame_game.destroy()
+                self.frame_buttons.pack(expand=True)
 
     def show_score(self):
         self.frame_buttons.pack_forget()
